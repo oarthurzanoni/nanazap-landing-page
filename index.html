@@ -85,6 +85,15 @@
       }
     </style>
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R84BQBB08P"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R84BQBB08P');
+    </script>
+
     <!-- Fathom - beautiful, simple website analytics -->
     <script
       src="https://cdn.usefathom.com/script.js"
@@ -862,6 +871,187 @@
             </div>
           </div>
         </section>
+        <!-- Video Section -->
+        <!-- <section class="section_video">
+          <div class="padding-global">
+            <div class="container-medium">
+              <div class="video-player" id="videoPlayer">
+                <video
+                  id="heroVideo"
+                  preload="metadata"
+                  playsinline
+                  poster="https://www.sevensalesai.com/images/thumb.png"
+                >
+                  <source src="https://www.sevensalesai.com/videos/juan.mp4" type="video/mp4" />
+                </video>
+                <div class="video-play-overlay" id="videoPlayOverlay">
+                  <div class="video-play-btn-big">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="video-controls" id="videoControls">
+                  <button class="video-ctrl-btn" id="videoPlayPause" type="button" aria-label="Play/Pause">
+                    <svg class="video-icon-play" width="16" height="16" viewBox="0 0 24 24" fill="white">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <svg class="video-icon-pause" width="16" height="16" viewBox="0 0 24 24" fill="white" style="display:none">
+                      <path d="M6 4h4v16H6zm8 0h4v16h-4z"/>
+                    </svg>
+                  </button>
+                  <span class="video-time" id="videoCurrentTime">0:00</span>
+                  <div class="video-progress-wrap" id="videoProgressWrap">
+                    <div class="video-progress-bar" id="videoProgressBar"></div>
+                    <div class="video-progress-thumb" id="videoProgressThumb"></div>
+                  </div>
+                  <span class="video-time" id="videoDuration">0:00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section> -->
+
+        <style>
+          .section_video {
+            padding-top: 2rem;
+            padding-bottom: 4rem;
+          }
+          .video-player {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #000;
+            cursor: pointer;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+          }
+          .video-player video {
+            display: block;
+            width: 100%;
+            height: auto;
+          }
+          .video-play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: opacity 0.25s;
+          }
+          .video-play-overlay.is-hidden {
+            opacity: 0;
+            pointer-events: none;
+          }
+          .video-play-btn-big {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, background 0.2s;
+          }
+          .video-play-btn-big:hover {
+            transform: scale(1.08);
+            background: rgba(0,0,0,0.7);
+          }
+          .video-play-btn-big svg {
+            margin-left: 3px;
+          }
+          .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            z-index: 3;
+            opacity: 0;
+            transition: opacity 0.25s;
+          }
+          .video-player:hover .video-controls,
+          .video-player.is-playing .video-controls {
+            opacity: 1;
+          }
+          .video-player.is-playing:not(:hover) .video-controls {
+            opacity: 0;
+          }
+          .video-player.is-paused .video-controls {
+            opacity: 1;
+          }
+          .video-ctrl-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+          }
+          .video-time {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: #fff;
+            min-width: 32px;
+            user-select: none;
+            flex-shrink: 0;
+          }
+          .video-progress-wrap {
+            flex: 1;
+            height: 4px;
+            background: rgba(255,255,255,0.25);
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+          }
+          .video-progress-wrap:hover {
+            height: 6px;
+          }
+          .video-progress-bar {
+            height: 100%;
+            background: #fff;
+            border-radius: 2px;
+            width: 0%;
+            pointer-events: none;
+          }
+          .video-progress-thumb {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            width: 12px;
+            height: 12px;
+            background: #fff;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s;
+          }
+          .video-progress-wrap:hover .video-progress-thumb {
+            opacity: 1;
+          }
+          @media screen and (max-width: 479px) {
+            .video-play-btn-big {
+              width: 52px;
+              height: 52px;
+            }
+            .video-play-btn-big svg {
+              width: 22px;
+              height: 22px;
+            }
+            .video-controls {
+              gap: 8px;
+              padding: 8px 10px;
+            }
+          }
+        </style>
         <section class="section_problems">
           <div class="padding-global">
             <div class="container-large">
@@ -1184,7 +1374,7 @@
                       <div class="solution_step is-1">
                         <div class="solution_number" style="flex-shrink: 0;"><div>1</div></div>
                         <h3 class="heading-style-h5">
-                          Importe seus contatos (CSV)
+                          Importe seus contatos<br/>da sua planilha ou do WhatsApp
                         </h3>
                       </div>
                       <div class="solution_image-wrapper">
@@ -1282,7 +1472,7 @@
                       </form>
                       <div class="text-align-center">
                         <p class="text-size-tiny">
-                          Ganhe créditos por cada indicação.
+                          Cadastre-se e ganhe 1 crédito gratuito.
                         </p>
                       </div>
                       <div class="form_message-success-wrapper w-form-done" style="display:none">
@@ -1308,6 +1498,57 @@
           </div>
         </section>
       </main>
+      <!-- Founder Section -->
+      <section class="section_founder">
+        <div class="padding-global">
+          <div class="container-medium">
+            <div class="text-align-center">
+              <img
+                src="./assets/images/arthur-zanoni-profile-picture.webp"
+                alt="Arthur Zanoni"
+                class="founder_photo"
+                loading="lazy"
+              />
+              <h3 class="founder_name">Arthur Zanoni</h3>
+              <p class="founder_role">Engenheiro de Software & Fundador do Nanazap</p>
+              <div class="spacer-small"></div>
+              <a
+                href="https://wa.me/5514996545463?text=Oi%20Arthur!%20Vim%20pelo%20site%20do%20Nanazap"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="button w-button"
+                style="color: #000"
+              >Fale com o fundador</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <style>
+        .section_founder {
+          padding-top: 1rem;
+          padding-bottom: 3rem;
+        }
+        .founder_photo {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+        .founder_name {
+          font-family: 'Instrument Sans', sans-serif;
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: #fff;
+          margin: 0.75rem 0 0.2rem;
+        }
+        .founder_role {
+          font-family: 'Inter', sans-serif;
+          font-size: 0.8rem;
+          color: rgba(255,255,255,0.45);
+          margin: 0;
+        }
+      </style>
       <section class="section_footer">
         <div class="padding-top padding-large">
           <div class="padding-global">
@@ -1514,6 +1755,113 @@
 
         runCycle();
       });
+    </script>
+
+    <!-- Custom Video Player -->
+    <script>
+      (function() {
+        const video = document.getElementById('heroVideo');
+        const player = document.getElementById('videoPlayer');
+        const overlay = document.getElementById('videoPlayOverlay');
+        const controls = document.getElementById('videoControls');
+        const playPauseBtn = document.getElementById('videoPlayPause');
+        const iconPlay = playPauseBtn.querySelector('.video-icon-play');
+        const iconPause = playPauseBtn.querySelector('.video-icon-pause');
+        const currentTimeEl = document.getElementById('videoCurrentTime');
+        const durationEl = document.getElementById('videoDuration');
+        const progressWrap = document.getElementById('videoProgressWrap');
+        const progressBar = document.getElementById('videoProgressBar');
+        const progressThumb = document.getElementById('videoProgressThumb');
+
+        function fmt(s) {
+          const m = Math.floor(s / 60);
+          const sec = Math.floor(s % 60);
+          return m + ':' + String(sec).padStart(2, '0');
+        }
+
+        function setPlaying(playing) {
+          iconPlay.style.display = playing ? 'none' : '';
+          iconPause.style.display = playing ? '' : 'none';
+          player.classList.toggle('is-playing', playing);
+          player.classList.toggle('is-paused', !playing);
+        }
+
+        function togglePlay() {
+          if (video.paused) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        }
+
+        overlay.addEventListener('click', function(e) {
+          e.stopPropagation();
+          togglePlay();
+        });
+
+        player.addEventListener('click', function(e) {
+          if (e.target.closest('.video-controls')) return;
+          togglePlay();
+        });
+
+        playPauseBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          togglePlay();
+        });
+
+        video.addEventListener('play', function() {
+          overlay.classList.add('is-hidden');
+          setPlaying(true);
+        });
+
+        video.addEventListener('pause', function() {
+          setPlaying(false);
+        });
+
+        video.addEventListener('ended', function() {
+          overlay.classList.remove('is-hidden');
+          setPlaying(false);
+        });
+
+        video.addEventListener('loadedmetadata', function() {
+          durationEl.textContent = fmt(video.duration);
+        });
+
+        video.addEventListener('timeupdate', function() {
+          if (!video.duration) return;
+          const pct = (video.currentTime / video.duration) * 100;
+          progressBar.style.width = pct + '%';
+          progressThumb.style.left = pct + '%';
+          currentTimeEl.textContent = fmt(video.currentTime);
+        });
+
+        // Seek
+        let seeking = false;
+
+        function seekTo(e) {
+          const rect = progressWrap.getBoundingClientRect();
+          const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+          video.currentTime = pct * video.duration;
+        }
+
+        progressWrap.addEventListener('mousedown', function(e) {
+          e.stopPropagation();
+          seeking = true;
+          seekTo(e);
+        });
+
+        document.addEventListener('mousemove', function(e) {
+          if (seeking) seekTo(e);
+        });
+
+        document.addEventListener('mouseup', function() {
+          seeking = false;
+        });
+
+        progressWrap.addEventListener('click', function(e) {
+          e.stopPropagation();
+        });
+      })();
     </script>
   </body>
 </html>
