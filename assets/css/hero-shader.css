@@ -1,0 +1,4 @@
+/* Original HSM Plus field/halftone and atmosphere treatment, in Nanazap green. */
+.hero_bg { overflow:hidden; height:100%; background-image:radial-gradient(ellipse at 30% 20%,#424c15 0,#0a0a0a 65%)!important; background-color:#0a0a0a; isolation:isolate; opacity:.95; }
+.hero-shader-canvas { display:block; width:100%; height:100%; position:absolute; inset:0; pointer-events:none; }
+.hero_bg::after { content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#0a0a0ad9 0%,#0a0a0ab0 45%,#0a0a0a26 100%); }
