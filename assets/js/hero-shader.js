@@ -448,7 +448,9 @@ void main() {
     canvas.setAttribute('aria-hidden', 'true');
     host.appendChild(canvas);
     try {
-        const shader = createShader(canvas, { theme: 'dark', background: { dark: '#0a0a0a', light: '#ffffff' } });
+        const staticTime = host.getAttribute('data-static-time');
+        const shader = createShader(canvas, { autoplay: staticTime === null, theme: 'dark', background: { dark: '#0a0a0a', light: '#ffffff' } });
+        if (staticTime !== null) shader.render(Number(staticTime) || 0);
         canvas.addEventListener('webglcontextlost', event => { event.preventDefault(); shader.destroy(); canvas.remove(); }, { once: true });
         window.addEventListener('pagehide', event => { if (!event.persisted)
             shader.destroy(); });

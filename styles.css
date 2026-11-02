@@ -5606,3 +5606,16 @@ figcaption {
 .navbar-tech-provider { display:flex;align-items:center;border-left:1px solid var(--_primitives---opacity--white-20);padding-left:1.5rem; }
 .navbar-tech-provider img { display:block;width:7rem;height:auto;max-height:2.25rem;object-fit:contain; }
 @media(max-width:479px) { .navbar_brand-group { gap:.75rem; }.navbar-tech-provider { padding-left:.75rem; }.navbar-tech-provider img { width:5rem; } }
+
+/* Approved badge / local preview: desktop follows the logo, mobile uses the CTA space. */
+.navbar-tech-provider img { width:8.5rem;max-height:2.75rem;border-radius:.375rem; }
+@media(max-width:767px) {
+  .has-tech-provider-badge .navbar_component .navbar_button-wrapper { display:none; }
+  .has-tech-provider-badge .navbar_component .navbar_container { grid-template-columns:1fr; }
+  .has-tech-provider-badge .navbar_brand-group { justify-content:space-between;width:100%;gap:1rem; }
+  .has-tech-provider-badge .navbar-tech-provider { border-left:0;padding-left:0; }
+  .has-tech-provider-badge .navbar-tech-provider img { width:7.25rem;max-height:2.5rem; }
+}
+/* This supplied asset has dark lettering and needs its original light surface. */
+.navbar-tech-provider img { width:9rem;max-height:none;background:#fff;border-radius:.375rem; }
+@media(max-width:767px) { .has-tech-provider-badge .navbar-tech-provider img { width:7.25rem;max-height:none; } }
